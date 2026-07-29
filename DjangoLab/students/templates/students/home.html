@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الرئيسية | نظام الكافيه المتكامل</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --orange-bright: #FF7A00;
+            --orange-deep: #D95300;
+            --orange-soft: #FF9E40;
+            --beige-light: #FFF8EE;
+            --beige-medium: #FDECD2;
+            --beige-dark: #EFCB98;
+            --card-light: #FFFFFF;
+            --text-main: #5C320A;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: var(--beige-light);
+            color: var(--text-main);
+        }
+
+        /* الهيدر */
+        .navbar {
+            background-color: var(--beige-medium);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--orange-bright);
+            box-shadow: 0 4px 12px rgba(255, 122, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--orange-deep);
+        }
+
+        .nav-widgets {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .points-badge {
+            background-color: var(--beige-dark);
+            color: var(--text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border: 2px solid var(--orange-bright);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .points-badge:hover {
+            background-color: var(--orange-bright);
+            color: white;
+        }
+
+        .cart-icon-btn {
+            background-color: var(--orange-bright);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            box-shadow: 0 3px 8px rgba(255, 122, 0, 0.25);
+            transition: 0.3s;
+        }
+
+        .cart-icon-btn:hover { background-color: var(--orange-deep); }
+
+        /* الهيرو */
+        .hero {
+            background: linear-gradient(rgba(255, 122, 0, 0.8), rgba(217, 83, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat;
+            padding: 4rem 1.5rem;
+            text-align: center;
+            color: #FFFFFF;
+        }
+
+        .greeting-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: var(--beige-medium);
+            color: var(--orange-deep);
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* أزرار التنقل الرئيسية */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .btn-nav {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background-color: var(--orange-bright);
+            color: #FFF;
+            padding: 0.7rem 1.4rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 3px 8px rgba(255, 122, 0, 0.2);
+        }
+
+        .btn-nav:hover { background-color: var(--orange-deep); }
+
+        /* أزرار الحالات */
+        .status-buttons-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 3rem;
+        }
+
+        .btn-status-icon {
+            background-color: var(--beige-medium);
+            border: 2px solid var(--orange-bright);
+            color: var(--text-main);
+            padding: 0.8rem 1.5rem;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-status-icon:hover {
+            background-color: var(--orange-bright);
+            color: white;
+        }
+
+        /* المعرض */
+        .gallery-section {
+            margin: 2.5rem 0;
+            text-align: center;
+        }
+
+        .gallery-title {
+            font-size: 1.8rem;
+            color: var(--orange-deep);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-card {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid var(--beige-medium);
+            box-shadow: 0 6px 15px rgba(255, 122, 0, 0.15);
+            background: #FFF;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-card p {
+            padding: 0.8rem;
+            font-weight: bold;
+            color: var(--orange-deep);
+            background: var(--beige-medium);
+        }
+
+        /* شبكة الكروت (10 أصناف لكل قسم) */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            border-radius: 16px;
+            padding: 1rem;
+            border: 2px solid var(--beige-medium);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+            background-color: var(--card-light);
+            transition: transform 0.2s;
+        }
+
+        .card:hover { transform: translateY(-4px); }
+
+        .item-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.2rem; }
+        .card-price { font-size: 1.1rem; font-weight: 800; color: var(--orange-deep); margin: 0.3rem 0; }
+
+        /* عناصر التحكم بالكمية مدرجة حديثاً */
+        .quantity-control {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 0.5rem 0;
+        }
+
+        .btn-qty {
+            background-color: var(--orange-bright);
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-number {
+            font-weight: bold;
+            font-size: 1.1rem;
+            min-width: 20px;
+        }
+
+        .btn-add-cart {
+            background-color: var(--beige-medium);
+            color: var(--orange-deep);
+            border: 2px solid var(--orange-bright);
+            padding: 0.6rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-add-cart:hover {
+            background-color: var(--orange-bright);
+            color: white;
+        }
+
+        /* النوافذ المنبثقة */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--beige-light);
+            border: 3px solid var(--orange-soft);
+            padding: 2rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-btn {
+            width: 100%;
+            border: none;
+            background: var(--beige-medium);
+            color: var(--orange-deep);
+            padding: 0.7rem;
+            border-radius: 10px;
+            margin-top: 1.2rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-cancel {
+            background-color: #ff4d4d !important;
+            color: white !important;
+            border: none !important;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .custom-input {
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 2px solid var(--beige-dark);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            width: 80%;
+            text-align: center;
+            outline: none;
+        }
+
+        /* عجلة الحظ */
+        .wheel-box {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 8px solid var(--orange-bright);
+            margin: 1.5rem auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            background: conic-gradient(var(--beige-medium) 0deg 90deg, var(--orange-soft) 90deg 180deg, var(--beige-dark) 180deg 270deg, var(--orange-bright) 270deg 360deg);
+            color: #FFF;
+            transition: transform 3s ease-out;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: var(--beige-medium);
+            color: var(--orange-deep);
+            font-weight: bold;
+            border-top: 3px solid var(--orange-bright);
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- الشريط العلوي -->
+    <nav class="navbar">
+        <div class="logo">
+            <span>☕</span>
+            <span>كافيه الأجواء</span>
+        </div>
+        <div class="nav-widgets">
+            <div class="points-badge" onclick="openModal('customer-status-modal')">
+                👤 <span id="user-name-display">زائر</span> | ⭐ النقاط: <span id="user-points">0</span>
+            </div>
+            <button class="cart-icon-btn" onclick="openModal('cart-modal')">
+                🛒 السلة (<span id="cart-count">0</span>)
+            </button>
+        </div>
+    </nav>
+
+    <!-- الهيرو -->
+    <header class="hero">
+        <div class="greeting-badge">أهلاً بك في كافيه الأجواء</div>
+        <h1>طعم الاسترخاء في كل لحظة</h1>
+        <p style="margin-top: 0.5rem; font-size: 1.1rem;">أرقى المشروبات والمكولات المصنوعة بكل حب</p>
+    </header>
+
+    <div class="container">
+
+        <!-- الأزرار الرئيسية للقوائم -->
+        <div class="nav-buttons">
+            <button class="btn-nav" onclick="openModal('drinks-modal')">☕ المشروبات</button>
+            <button class="btn-nav" onclick="openModal('sweets-modal')">🍰 الحلويات </button>
+            <button class="btn-nav" onclick="openModal('croissant-modal')">🥐 المخبوزات </button>
+            <button class="btn-nav" onclick="openModal('pizza-modal')">🍕 البيتزا </button>
+            <button class="btn-nav" onclick="openModal('slush-modal')">🥤 السلاشات </button>
+            <button class="btn-nav" onclick="openModal('booking-modal')">🪑 حجز طاولة</button>
+            <button class="btn-nav" onclick="openModal('wheel-modal')">🎡 عجلة الحظ</button>
+            <button class="btn-nav" onclick="openModal('comments-modal')">💬 آراء الزباين</button>
+            <button class="btn-nav" onclick="openModal('about-modal')">ℹ️ من نحن</button>
+        </div>
+
+        <!-- أزرار الخدمات والحالات -->
+        <div class="status-buttons-container">
+            <button class="btn-status-icon" onclick="openModal('cafe-status-modal')">📌 حالة الكافي</button>
+
+            <!-- زر حالة الطلب المضاف حديثاً -->
+            <button class="btn-status-icon" style="background-color: var(--beige-dark);" onclick="openModal('order-track-modal')">🛵 حالة الطلب الحالية</button>
+
+            <button class="btn-status-icon" onclick="openModal('employee-status-modal')">👨‍🍳 دخول الموظفين</button>
+            <button class="btn-status-icon" style="background-color: var(--orange-soft);" onclick="openModal('customer-status-modal')">🙋‍♂️ دخول الزبائن</button>
+            <button class="btn-status-icon" style="background-color: var(--orange-bright); color: white;" onclick="openModal('admin-modal')">🔒 لوحة التحكم</button>
+        </div>
+
+        <!-- معرض صور الكافيه المتناسق -->
+        <section class="gallery-section">
+            <h2 class="gallery-title">✨ أجواء الكافيه الداخلي ✨</h2>
+            <div class="gallery-grid">
+                <div class="gallery-card"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800&auto=format&fit=crop" alt="الكافيه"><p>الجلسات الداخلية الدافئة</p></div>
+                <div class="gallery-card"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=800&auto=format&fit=crop" alt="ركن القهوة"><p>ركن التحضير والباريستا</p></div>
+                <div class="gallery-card"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop" alt="جلسات مريحة"><p>جلسات مريحة وهادئة</p></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 1. نافذة المشروبات (10 أصناف) -->
+    <div class="modal" id="drinks-modal">
+        <div class="modal-content">
+            <h2 style="color: var(--orange-deep); text-align: center; margin-bottom: 1rem;">☕ قائمة المشروبات والقهوة</h2>
+            <div class="cards-grid">
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=80&w=400&auto=format&fit=crop"><div class="card-title">اسبريسو سينجل</div><div class="card-price">250 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-d1', -1)">-</button><span class="qty-number" id="item-d1">1</span><button class="btn-qty" onclick="changeQty('item-d1', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('اسبريسو', 250, 'item-d1')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=400&auto=format&fit=crop"><div class="card-title">كافيه لاتيه</div><div class="card-price">450 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-d2', -1)">-</button><span class="qty-number" id="item-d2">1</span><button class="btn-qty" onclick="changeQty('item-d2', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('كافيه لاتيه', 450, 'item-d2')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=400&auto=format&fit=crop"><div class="card-title">كابوتشينو رغوة</div><div class="card-price">500 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-d3', -1)">-</button><span class="qty-number" id="item-d3">1</span><button class="btn-qty" onclick="changeQty('item-d3', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('كابوتشينو', 500, 'item-d3')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1585494156145-1c60a4fe952b?q=80&w=400&auto=format&fit=crop"><div class="card-title">فلات وايت</div><div class="card-price">480 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-d4', -1)">-</button><span class="qty-number" id="item-d4">1</span><button class="btn-qty" onclick="changeQty('item-d4', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('فلات وايت', 480, 'item-d4')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=400&auto=format&fit=crop"><div class="card-title">سبانيش لاتيه بارد</div><div class="card-price">600 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-d5', -1)">-</button><span class="qty-number" id="item-d5">1</span><button class="btn-qty" onclick="changeQty('item-d5', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('سبانيش لاتيه', 600, 'item-d5')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?q=80&w=400&auto=format&fit=crop"><div class="card-title">موكا شوكولاتة</div><div class="card-price">550 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-d6', -1)">-</button><span class="qty-number" id="item-d6">1</span><button class="btn-qty" onclick="changeQty('item-d6', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('موكا', 550, 'item-d6')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=400&auto=format&fit=crop"><div class="card-title">قهوة مقطرة V60</div><div class="card-price">700 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-d7', -1)">-</button><span class="qty-number" id="item-d7">1</span><button class="btn-qty" onclick="changeQty('item-d7', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('قهوة V60', 700, 'item-d7')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=400&auto=format&fit=crop"><div class="card-title">شاي أحمر فاخر</div><div class="card-price">200 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-d8', -1)">-</button><span class="qty-number" id="item-d8">1</span><button class="btn-qty" onclick="changeQty('item-d8', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('شاي أحمر', 200, 'item-d8')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?q=80&w=400&auto=format&fit=crop"><div class="card-title">شاي كرك بالمكثف</div><div class="card-price">300 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-d9', -1)">-</button><span class="qty-number" id="item-d9">1</span><button class="btn-qty" onclick="changeQty('item-d9', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('شاي كرك', 300, 'item-d9')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1613478223719-2ab802602423?q=80&w=400&auto=format&fit=crop"><div class="card-title">عصير برتقال طازج</div><div class="card-price">400 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-d10', -1)">-</button><span class="qty-number" id="item-d10">1</span><button class="btn-qty" onclick="changeQty('item-d10', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('برتقال طازج', 400, 'item-d10')">إضافة 🛒</button></div>
+            </div>
+            <button class="close-btn" onclick="closeModal('drinks-modal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- 2. نافذة الحلويات (10 أصناف) -->
+    <div class="modal" id="sweets-modal">
+        <div class="modal-content">
+            <h2 style="color: var(--orange-deep); text-align: center; margin-bottom: 1rem;">🍰 قائمة الحلويات</h2>
+            <div class="cards-grid">
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=400&auto=format&fit=crop"><div class="card-title">تشيز كيك توت</div><div class="card-price">900 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-s1', -1)">-</button><span class="qty-number" id="item-s1">1</span><button class="btn-qty" onclick="changeQty('item-s1', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('تشيز كيك توت', 900, 'item-s1')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=400&auto=format&fit=crop"><div class="card-title">دونات هشة</div><div class="card-price">500 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-s2', -1)">-</button><span class="qty-number" id="item-s2">1</span><button class="btn-qty" onclick="changeQty('item-s2', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('دونات هشة', 500, 'item-s2')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=400&auto=format&fit=crop"><div class="card-title">كيك الشوكولاتة</div><div class="card-price">850 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-s3', -1)">-</button><span class="qty-number" id="item-s3">1</span><button class="btn-qty" onclick="changeQty('item-s3', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('كيك شوكولاتة', 850, 'item-s3')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?q=80&w=400&auto=format&fit=crop"><div class="card-title">تيراميسو إيطالي</div><div class="card-price">950 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-s4', -1)">-</button><span class="qty-number" id="item-s4">1</span><button class="btn-qty" onclick="changeQty('item-s4', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('تيراميسو', 950, 'item-s4')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?q=80&w=400&auto=format&fit=crop"><div class="card-title">وافل بلجيكي</div><div class="card-price">750 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-s5', -1)">-</button><span class="qty-number" id="item-s5">1</span><button class="btn-qty" onclick="changeQty('item-s5', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('وافل بلجيكي', 750, 'item-s5')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=400&auto=format&fit=crop"><div class="card-title">بان كيك عسل</div><div class="card-price">700 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-s6', -1)">-</button><span class="qty-number" id="item-s6">1</span><button class="btn-qty" onclick="changeQty('item-s6', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('بان كيك', 700, 'item-s6')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=400&auto=format&fit=crop"><div class="card-title">تارت الفواكه</div><div class="card-price">800 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-s7', -1)">-</button><span class="qty-number" id="item-s7">1</span><button class="btn-qty" onclick="changeQty('item-s7', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('تارت فواكه', 800, 'item-s7')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=400&auto=format&fit=crop"><div class="card-title">براونيز شوكولاتة</div><div class="card-price">600 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-s8', -1)">-</button><span class="qty-number" id="item-s8">1</span><button class="btn-qty" onclick="changeQty('item-s8', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('براونيز', 600, 'item-s8')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?q=80&w=400&auto=format&fit=crop"><div class="card-title">سينابون قرفة</div><div class="card-price">650 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-s9', -1)">-</button><span class="qty-number" id="item-s9">1</span><button class="btn-qty" onclick="changeQty('item-s9', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('سينابون', 650, 'item-s9')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=400&auto=format&fit=crop"><div class="card-title">كريب نوتيلا</div><div class="card-price">750 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-s10', -1)">-</button><span class="qty-number" id="item-s10">1</span><button class="btn-qty" onclick="changeQty('item-s10', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('كريب نوتيلا', 750, 'item-s10')">إضافة 🛒</button></div>
+            </div>
+            <button class="close-btn" onclick="closeModal('sweets-modal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- 3. نافذة المخبوزات (10 أصناف) -->
+    <div class="modal" id="croissant-modal">
+        <div class="modal-content">
+            <h2 style="color: var(--orange-deep); text-align: center; margin-bottom: 1rem;">🥐 الكرواسون والمخبوزات</h2>
+            <div class="cards-grid">
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=400&auto=format&fit=crop"><div class="card-title">كرواسون جبنة</div><div class="card-price">450 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-c1', -1)">-</button><span class="qty-number" id="item-c1">1</span><button class="btn-qty" onclick="changeQty('item-c1', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('كرواسون جبنة', 450, 'item-c1')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1549903072-7e6e0bedb7fb?q=80&w=400&auto=format&fit=crop"><div class="card-title">كرواسون شوكولاتة</div><div class="card-price">500 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-c3', -1)">-</button><span class="qty-number" id="item-c3">1</span><button class="btn-qty" onclick="changeQty('item-c3', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('كرواسون شوكولاتة', 500, 'item-c3')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=400&auto=format&fit=crop"><div class="card-title">كرواسون لوز</div><div class="card-price">550 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-c4', -1)">-</button><span class="qty-number" id="item-c4">1</span><button class="btn-qty" onclick="changeQty('item-c4', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('كرواسون لوز', 550, 'item-c4')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?q=80&w=400&auto=format&fit=crop"><div class="card-title">كرواسون سادة</div><div class="card-price">350 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-c5', -1)">-</button><span class="qty-number" id="item-c5">1</span><button class="btn-qty" onclick="changeQty('item-c5', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('كرواسون سادة', 350, 'item-c5')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?q=80&w=400&auto=format&fit=crop"><div class="card-title">دانتيلا بالفواكه</div><div class="card-price">600 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-c6', -1)">-</button><span class="qty-number" id="item-c6">1</span><button class="btn-qty" onclick="changeQty('item-c6', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('دانتيلا فواكه', 600, 'item-c6')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?q=80&w=400&auto=format&fit=crop"><div class="card-title">مافن بالفانيليا</div><div class="card-price">400 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-c7', -1)">-</button><span class="qty-number" id="item-c7">1</span><button class="btn-qty" onclick="changeQty('item-c7', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('مافن فانيليا', 400, 'item-c7')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?q=80&w=400&auto=format&fit=crop"><div class="card-title">خبز البريوش</div><div class="card-price">450 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-c8', -1)">-</button><span class="qty-number" id="item-c8">1</span><button class="btn-qty" onclick="changeQty('item-c8', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('خبز بريوش', 450, 'item-c8')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=400&auto=format&fit=crop"><div class="card-title">فطيرة التفاح</div><div class="card-price">500 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-c9', -1)">-</button><span class="qty-number" id="item-c9">1</span><button class="btn-qty" onclick="changeQty('item-c9', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('فطيرة تفاح', 500, 'item-c9')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=400&auto=format&fit=crop"><div class="card-title">بابلز المخبوزات</div><div class="card-price">450 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-c10', -1)">-</button><span class="qty-number" id="item-c10">1</span><button class="btn-qty" onclick="changeQty('item-c10', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('بابلز مخبوزات', 450, 'item-c10')">إضافة 🛒</button></div>
+            </div>
+            <button class="close-btn" onclick="closeModal('croissant-modal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- 4. نافذة البيتزا (10 أصناف) -->
+    <div class="modal" id="pizza-modal">
+        <div class="modal-content">
+            <h2 style="color: var(--orange-deep); text-align: center; margin-bottom: 1rem;">🍕 قائمة البيتزا</h2>
+            <div class="cards-grid">
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?q=80&w=400&auto=format&fit=crop"><div class="card-title">بيتزا مارجريتا</div><div class="card-price">1100 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-p1', -1)">-</button><span class="qty-number" id="item-p1">1</span><button class="btn-qty" onclick="changeQty('item-p1', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('بيتزا مارجريتا', 1100, 'item-p1')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=400&auto=format&fit=crop"><div class="card-title">بيتزا ببروني</div><div class="card-price">1300 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-p2', -1)">-</button><span class="qty-number" id="item-p2">1</span><button class="btn-qty" onclick="changeQty('item-p2', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('بيتزا ببروني', 1300, 'item-p2')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=400&auto=format&fit=crop"><div class="card-title">بيتزا خضار مشكلة</div><div class="card-price">1150 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-p3', -1)">-</button><span class="qty-number" id="item-p3">1</span><button class="btn-qty" onclick="changeQty('item-p3', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('بيتزا خضار', 1150, 'item-p3')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=400&auto=format&fit=crop"><div class="card-title">بيتزا دجاج مشوي</div><div class="card-price">1350 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-p4', -1)">-</button><span class="qty-number" id="item-p4">1</span><button class="btn-qty" onclick="changeQty('item-p4', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('بيتزا دجاج', 1350, 'item-p4')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1573821663912-569905455b1c?q=80&w=400&auto=format&fit=crop"><div class="card-title">بيتزا 4 أجبان</div><div class="card-price">1400 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-p5', -1)">-</button><span class="qty-number" id="item-p5">1</span><button class="btn-qty" onclick="changeQty('item-p5', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('بيتزا أجبان', 1400, 'item-p5')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&auto=format&fit=crop"><div class="card-title">بيتزا باربيكيو دجاج</div><div class="card-price">1400 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-p6', -1)">-</button><span class="qty-number" id="item-p6">1</span><button class="btn-qty" onclick="changeQty('item-p6', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('بيتزا باربيكيو', 1400, 'item-p6')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?q=80&w=400&auto=format&fit=crop"><div class="card-title">بيتزا رانش</div><div class="card-price">1450 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-p7', -1)">-</button><span class="qty-number" id="item-p7">1</span><button class="btn-qty" onclick="changeQty('item-p7', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('بيتزا رانش', 1450, 'item-p7')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?q=80&w=400&auto=format&fit=crop"><div class="card-title">بيتزا تونة مع بصل</div><div class="card-price">1200 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-p8', -1)">-</button><span class="qty-number" id="item-p8">1</span><button class="btn-qty" onclick="changeQty('item-p8', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('بيتزا تونة', 1200, 'item-p8')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?q=80&w=400&auto=format&fit=crop"><div class="card-title">بيتزا سبانخ وجبن</div><div class="card-price">1100 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-p9', -1)">-</button><span class="qty-number" id="item-p9">1</span><button class="btn-qty" onclick="changeQty('item-p9', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('بيتزا سبانخ', 1100, 'item-p9')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=400&auto=format&fit=crop"><div class="card-title">بيتزا الأجواء الخاصة</div><div class="card-price">1600 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-p10', -1)">-</button><span class="qty-number" id="item-p10">1</span><button class="btn-qty" onclick="changeQty('item-p10', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('بيتزا سبيشال', 1600, 'item-p10')">إضافة 🛒</button></div>
+            </div>
+            <button class="close-btn" onclick="closeModal('pizza-modal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- 5. نافذة السلاشات (10 أصناف) -->
+    <div class="modal" id="slush-modal">
+        <div class="modal-content">
+            <h2 style="color: var(--orange-deep); text-align: center; margin-bottom: 1rem;">🥤 قائمة السلاشات المنعشة</h2>
+            <div class="cards-grid">
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?q=80&w=400&auto=format&fit=crop"><div class="card-title">سلاش بطيخ</div><div class="card-price">500 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-sl1', -1)">-</button><span class="qty-number" id="item-sl1">1</span><button class="btn-qty" onclick="changeQty('item-sl1', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('سلاش بطيخ', 500, 'item-sl1')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1546173159-315724a31696?q=80&w=400&auto=format&fit=crop"><div class="card-title">سلاش مانجو</div><div class="card-price">550 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-sl3', -1)">-</button><span class="qty-number" id="item-sl3">1</span><button class="btn-qty" onclick="changeQty('item-sl3', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('سلاش مانجو', 550, 'item-sl3')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=400&auto=format&fit=crop"><div class="card-title">سلاش ليمون ونعناع</div><div class="card-price">450 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-sl4', -1)">-</button><span class="qty-number" id="item-sl4">1</span><button class="btn-qty" onclick="changeQty('item-sl4', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('سلاش ليمون', 450, 'item-sl4')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?q=80&w=400&auto=format&fit=crop"><div class="card-title">سلاش توت أزرق</div><div class="card-price">550 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-sl5', -1)">-</button><span class="qty-number" id="item-sl5">1</span><button class="btn-qty" onclick="changeQty('item-sl5', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('سلاش توت أزرق', 550, 'item-sl5')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?q=80&w=400&auto=format&fit=crop"><div class="card-title">سلاش توت أحمر</div><div class="card-price">500 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-sl6', -1)">-</button><span class="qty-number" id="item-sl6">1</span><button class="btn-qty" onclick="changeQty('item-sl6', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('سلاش توت أحمر', 500, 'item-sl6')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1613478223719-2ab802602423?q=80&w=400&auto=format&fit=crop"><div class="card-title">سلاش برتقال</div><div class="card-price">450 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-sl7', -1)">-</button><span class="qty-number" id="item-sl7">1</span><button class="btn-qty" onclick="changeQty('item-sl7', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('سلاش برتقال', 450, 'item-sl7')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1589733955941-5eeaf752f6dd?q=80&w=400&auto=format&fit=crop"><div class="card-title">سلاش أناناس</div><div class="card-price">550 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-sl8', -1)">-</button><span class="qty-number" id="item-sl8">1</span><button class="btn-qty" onclick="changeQty('item-sl8', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('سلاش أناناس', 550, 'item-sl8')">إضافة 🛒</button></div>
+                <div class="card"><img class="item-img" src="https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?q=80&w=400&auto=format&fit=crop"><div class="card-title">سلاش مكس فواكه</div><div class="card-price">650 ريال</div><div class="quantity-control"><button class="btn-qty" onclick="changeQty('item-sl10', -1)">-</button><span class="qty-number" id="item-sl10">1</span><button class="btn-qty" onclick="changeQty('item-sl10', 1)">+</button></div><button class="btn-add-cart" onclick="addToCartWithQty('سلاش مكس', 650, 'item-sl10')">إضافة 🛒</button></div>
+            </div>
+            <button class="close-btn" onclick="closeModal('slush-modal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة حالة الكافي -->
+    <div class="modal" id="cafe-status-modal">
+        <div class="modal-content" style="text-align: center;">
+            <h2 style="color: var(--orange-deep); margin-bottom: 1rem;">📌 حالة الكافي الحالية</h2>
+            <div style="font-size: 1.2rem; line-height: 2;">
+                <p>🟢 <b>الحالة:</b> مفتوح الآن وأجواء هادئة</p>
+                <p>📊 <b>مستوى الزحام:</b> متوسط (متوفر جلسات)</p>
+                <p>⏰ <b>ساعات العمل:</b> 9:00 صباحاً - 12:00 منتصف الليل</p>
+                <p>🌡️ <b>التكييف والحرارة:</b> 22°C (أجواء دافئة ومثالية)</p>
+            </div>
+            <button class="close-btn" onclick="closeModal('cafe-status-modal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة متابعة حالة الطلب المضافة حديثاً -->
+    <div class="modal" id="order-track-modal">
+        <div class="modal-content" style="text-align: center;">
+            <h2 style="color: var(--orange-deep); margin-bottom: 1rem;">🛵 متابعة حالة الطلب</h2>
+            <div id="order-track-details">
+                <p style="font-size: 1.1rem; color: #666;">لا يوجد طلبات حالية مسبقة، يرجى تقديم طلب أولاً.</p>
+            </div>
+            <button class="close-btn" onclick="closeModal('order-track-modal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة عجلة الحظ -->
+    <div class="modal" id="wheel-modal">
+        <div class="modal-content" style="text-align: center;">
+            <h2 style="color: var(--orange-deep);">🎡 عجلة الحظ للولاء</h2>
+            <p>أدر العجلة واحصل على هدايا ونقاط فورية!</p>
+            <div id="wheel-box" class="wheel-box">🎁 اضغط للتدوير</div>
+            <button class="btn-add-cart" style="width: 200px;" onclick="spinWheel()">تدوير العجلة 🚀</button>
+            <p id="wheel-result" style="margin-top: 1rem; font-weight: bold; color: green;"></p>
+            <button class="close-btn" onclick="closeModal('wheel-modal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة حجز الطاولات -->
+    <div class="modal" id="booking-modal">
+        <div class="modal-content" style="text-align: center;">
+            <h2 style="color: var(--orange-deep); margin-bottom: 1rem;">🪑 حجز طاولة</h2>
+            <input type="text" class="custom-input" placeholder="اسمك الكريم"><br>
+            <input type="number" class="custom-input" placeholder="عدد الأشخاص"><br>
+            <input type="datetime-local" class="custom-input"><br>
+            <button class="btn-add-cart" style="width: 80%; padding: 0.8rem;" onclick="alert('تم استلام طلب الحجز بنجاح! سنقوم بالتأكيد معكم.'); closeModal('booking-modal');">تأكيد الحجز ✅</button>
+            <button class="close-btn" onclick="closeModal('booking-modal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة دخول الزبائن -->
+    <div class="modal" id="customer-status-modal">
+        <div class="modal-content" style="text-align: center;">
+            <h2 style="color: var(--orange-deep); margin-bottom: 1rem;">🙋‍♂️ دخول الزبائن (نظام الولاء)</h2>
+            <p style="margin-bottom: 1rem;">أدخل اسمك لربط نقاطك وحسابك. كل 3 طلبات تمنحك <b>أغلى صنف في سلتك مجاناً!</b> 🎁</p>
+            <input type="text" id="customer-name-input" class="custom-input" placeholder="أدخل اسمك هنا..."><br>
+            <button class="btn-add-cart" style="width: 80%; padding: 0.8rem;" onclick="loginCustomer()">تسجيل الدخول / إنشاء حساب</button>
+            <button class="close-btn" onclick="closeModal('customer-status-modal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة دخول الموظفين -->
+    <div class="modal" id="employee-status-modal">
+        <div class="modal-content" style="text-align: center;">
+            <h2 style="color: var(--orange-deep); margin-bottom: 1rem;">👨‍🍳 دخول الموظفين والباريستا</h2>
+            <p>يرجى إدخال كود الموظف:</p>
+            <input type="password" id="emp-pass" class="custom-input" placeholder="الكود"><br>
+            <button class="btn-add-cart" style="width: 80%; padding: 0.8rem;" onclick="if(document.getElementById('emp-pass').value==='1234'){ alert('أهلاً بك في وردية العمل اليوم!'); closeModal('employee-status-modal'); } else { alert('الكود خاطئ!'); }">تسجيل دخول الموظف</button>
+            <button class="close-btn" onclick="closeModal('employee-status-modal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة السلة والطلب -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <h2 style="color: var(--orange-deep); margin-bottom: 1rem;">🛒 سلة المشتريات</h2>
+            <div id="cart-items-list"></div>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--beige-dark);">
+            <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.2rem;">
+                <span>الإجمالي:</span>
+                <span id="cart-total" style="color: var(--orange-deep);">0 ريال</span>
+            </div>
+            
+            <!-- زر إتمام الطلب وزر إلغاء الطلب بالكامل المضاف حديثاً -->
+            <div style="display: flex; gap: 10px; margin-top: 1rem;">
+                <button style="flex: 2; background-color: var(--orange-bright); color: white; border: none; padding: 0.8rem; font-size: 1.1rem; border-radius: 10px; font-weight: bold; cursor: pointer;" onclick="submitOrder()">إتمام الطلب ✅</button>
+                <button style="flex: 1; background-color: #ff4d4d; color: white; border: none; padding: 0.8rem; font-size: 1.1rem; border-radius: 10px; font-weight: bold; cursor: pointer;" onclick="clearCart()">إلغاء الطلب ❌</button>
+            </div>
+
+            <div id="invoice-container" style="display: none; background: #FFF; border: 2px dashed var(--orange-bright); padding: 1.5rem; border-radius: 12px; margin-top: 1rem;">
+                <h3 style="text-align: center; color: var(--orange-deep);">🧾 الفاتورة</h3>
+                <p id="invoice-details" style="margin-top: 0.5rem; line-height: 1.6;"></p>
+            </div>
+            <button class="close-btn" onclick="closeModal('cart-modal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة لوحة الإدارة -->
+    <div class="modal" id="admin-modal">
+        <div class="modal-content" style="text-align: center;">
+            <h2 style="color: var(--orange-deep); margin-bottom: 1rem;">🔒 لوحة التحكم والطلبات</h2>
+            <div id="admin-login-container">
+                <p>رمز الدخول السري:</p>
+                <input type="password" id="admin-password" class="custom-input" placeholder="الرمز"><br>
+                <button class="btn-add-cart" onclick="loginAdmin()">دخول</button>
+            </div>
+            <div id="admin-orders-container" style="display: none;">
+                <p style="font-weight: bold; margin-bottom: 10px;">جدول الطلبات المستلمة وتعديل الحالات:</p>
+                <table style="width: 100%; border-collapse: collapse; background: #fff;">
+                    <thead>
+                        <tr style="background: var(--beige-medium);">
+                            <th style="padding: 8px; border: 1px solid var(--beige-dark);">#</th>
+                            <th style="padding: 8px; border: 1px solid var(--beige-dark);">الزبون</th>
+                            <th style="padding: 8px; border: 1px solid var(--beige-dark);">الطلبات</th>
+                            <th style="padding: 8px; border: 1px solid var(--beige-dark);">الإجمالي</th>
+                            <th style="padding: 8px; border: 1px solid var(--beige-dark);">الحالة</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-list"></tbody>
+                </table>
+            </div>
+            <button class="close-btn" onclick="closeModal('admin-modal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة آراء الزباين (تم تحديثها لإضافة نموذج آراء جديد) -->
+    <div class="modal" id="comments-modal">
+        <div class="modal-content" style="text-align: center;">
+            <h2 style="color: var(--orange-deep); margin-bottom: 1rem;">💬 آراء الزباين</h2>
+            
+            <div id="comments-container">
+                <div style="text-align: right; background: white; padding: 10px; border-radius: 10px; margin-bottom: 10px;">
+                    <b>⭐ أحمد:</b> أفضل قهوة V60 جربتها في المنطقة!
+                </div>
+                <div style="text-align: right; background: white; padding: 10px; border-radius: 10px; margin-bottom: 10px;">
+                    <b>⭐ سارة:</b> السلاشات والبيتزا لديدة جداً والخدمة سريعة.
+                </div>
+            </div>
+
+            <hr style="margin: 1.5rem 0; border: none; border-top: 2px dashed var(--orange-soft);">
+            
+            <!-- قسم كتابة وإضافة رأي جديد -->
+            <h3 style="color: var(--orange-deep); margin-bottom: 0.8rem;">➕ أضف رأيك الخاص</h3>
+            <input type="text" id="new-comment-name" class="custom-input" placeholder="اسمك الكريم" style="width: 90%;"><br>
+            <textarea id="new-comment-text" class="custom-input" placeholder="اكتب تعليقك وتجربتك هنا..." style="width: 90%; height: 80px; resize: none;"></textarea><br>
+            <button class="btn-add-cart" style="width: 90%; padding: 0.7rem;" onclick="addCustomerComment()">نشر التعليق ✨</button>
+
+            <button class="close-btn" onclick="closeModal('comments-modal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة من نحن -->
+    <div class="modal" id="about-modal">
+        <div class="modal-content" style="text-align: center;">
+            <h2 style="color: var(--orange-deep); margin-bottom: 1rem;">ℹ️ من نحن</h2>
+            <p style="line-height: 1.8;">كافيه الأجواء هو وجهتكم المفضل للحصول على أفضل تجربة قهوة ومخبوزات وفاخرة. نسعى دائماً لتوفير بيئة مريحة ودافئة مع خدمة استثنائية ونظام ولاء مميز لعملائنا الكرام.</p>
+            <button class="close-btn" onclick="closeModal('about-modal')">إغلاق</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © كافيه الأجواء</p>
+    </footer>
+
+    <!-- JavaScript التفاعلي والكامل (مع إضافة التحديثات للعداد والحذف وحالة الطلب والتعليقات) -->
+    <script>
+        let cart = [];
+        let orders = [];
+        let orderCounter = 1;
+        let isAdminLoggedIn = false;
+        let customersData = {};
+        let currentCustomer = null;
+        let latestOrder = null;
+
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        // التحكم في عداد الكمية لكل كارت صنف
+        function changeQty(elementId, change) {
+            let el = document.getElementById(elementId);
+            let currentVal = parseInt(el.innerText, 10);
+            let newVal = currentVal + change;
+            if (newVal < 1) newVal = 1;
+            el.innerText = String(newVal);
+        }
+
+        function loginCustomer() {
+            let rawInput = document.getElementById('customer-name-input').value;
+            let formattedName = String(rawInput).trim();
+            let lowerName = formattedName.toLowerCase();
+            let upperName = formattedName.toUpperCase();
+
+            if(!formattedName) { alert('يرجى إدخال الاسم!'); return; }
+            
+            currentCustomer = formattedName;
+            if(!customersData[currentCustomer]) customersData[currentCustomer] = { points: 0 };
+            
+            document.getElementById('user-name-display').innerText = currentCustomer;
+            document.getElementById('user-points').innerText = String(customersData[currentCustomer].points);
+            
+            alert(`أهلاً بك يا ${currentCustomer}! تم تسجيل دخولك بنجاح.`);
+            closeModal('customer-status-modal');
+        }
+
+        function addToCart(name, price) {
+            addToCartWithQty(name, price, null);
+        }
+
+        // إضافة العناصر مع مراعاة العدد المختار من العداد
+        function addToCartWithQty(name, price, qtyElementId) {
+            let parsedPrice = parseInt(price, 10);
+            let floatPrice = parseFloat(parsedPrice);
+            let numPrice = Number(floatPrice);
+            let qty = qtyElementId ? parseInt(document.getElementById(qtyElementId).innerText, 10) : 1;
+
+            // إضافة كمية العناصر المحددة للطلب
+            for (let i = 0; i < qty; i++) {
+                cart.push({ name: String(name), price: numPrice });
+            }
+
+            updateCartUI();
+            alert(`تمت إضافة ${qty} من (${name}) إلى السلة!`);
+        }
+
+        // حذف عنصر فردي من السلة
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        // إلغاء الطلب والسلة بالكامل
+        function clearCart() {
+            if(cart.length === 0) return;
+            if(confirm("هل أنت تأكد من إمكانية إلغاء الطلب وتفريغ السلة؟")) {
+                cart = [];
+                updateCartUI();
+                alert("تم إلغاء الطلب وتفريغ السلة!");
+            }
+        }
+
+        function updateCartUI() {
+            let cartCountElement = document.getElementById('cart-count');
+            cartCountElement.innerText = String(cart.length);
+
+            let list = document.getElementById('cart-items-list');
+            list.innerHTML = '';
+            let total = 0;
+
+            if(cart.length === 0) {
+                list.innerHTML = '<p>السلة فارغة حالياً.</p>';
+            } else {
+                cart.forEach((item, index) => {
+                    total += item.price;
+                    list.innerHTML += `<div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px solid #eee;">
+                        <span>#${index+1} ${item.name}</span>
+                        <div>
+                            <span style="margin-left: 10px;"><b>${item.price.toFixed(2)} ريال</b></span>
+                            <button class="btn-cancel" onclick="removeFromCart(${index})">حذف 🗑️</button>
+                        </div>
+                    </div>`;
+                });
+            }
+            document.getElementById('cart-total').innerText = total.toString() + ' ريال';
+        }
+
+        function submitOrder() {
+            if(cart.length === 0) { alert('السلة فارغة!'); return; }
+            if(!currentCustomer) {
+                alert('يرجى تسجيل دخولك كزبون باسمك أولاً لجمع النقاط!');
+                openModal('customer-status-modal');
+                return;
+            }
+
+            let totalSum = 0;
+            let maxPrice = 0;
+            let maxItemName = "";
+            let itemsArray = [];
+
+            for(let item of cart) {
+                totalSum += item.price;
+                itemsArray.push(item.name);
+                if(item.price > maxPrice) {
+                    maxPrice = item.price;
+                    maxItemName = item.name;
+                }
+            }
+
+            let finalTotal = totalSum;
+            let discountNotice = "";
+            let pts = customersData[currentCustomer].points;
+
+            if(pts >= 3) {
+                finalTotal = finalTotal - maxPrice;
+                customersData[currentCustomer].points -= 3;
+                discountNotice = `<br><b style="color:green;">🎉 خصم ولاء: تم الحصول على (${maxItemName}) مجاناً مقابل 3 نقاط!</b>`;
+            }
+
+            customersData[currentCustomer].points += 1;
+            document.getElementById('user-points').innerText = String(customersData[currentCustomer].points);
+
+            let newOrd = { 
+                id: orderCounter++, 
+                customer: currentCustomer, 
+                items: itemsArray.join(' ، '), 
+                total: finalTotal,
+                status: 'قيد التجهيز ⏳'
+            };
+            
+            orders.push(newOrd);
+            latestOrder = newOrd;
+
+            updateOrderTrackUI();
+
+            document.getElementById('invoice-container').style.display = 'block';
+            document.getElementById('invoice-details').innerHTML = `
+                <b>الزبون:</b> ${currentCustomer}<br>
+                <b>رقم الطلب:</b> #${newOrd.id}<br>
+                <b>الأصناف:</b> ${newOrd.items}<br>
+                <b>المبلغ النهائي:</b> ${finalTotal.toFixed(2)} ريال ${discountNotice}<br>
+                <b>رصيد نقاطك الحالي:</b> ${customersData[currentCustomer].points} نقاط ⭐
+            `;
+
+            cart = [];
+            updateCartUI();
+            renderAdminOrders();
+            alert('تم تقديم طلبك بنجاح!');
+        }
+
+        // تحديث واجهة تتبع حالة الطلب
+        function updateOrderTrackUI() {
+            let container = document.getElementById('order-track-details');
+            if(!latestOrder) {
+                container.innerHTML = `<p style="font-size: 1.1rem; color: #666;">لا يوجد طلبات حالية مسبقة، يرجى تقديم طلب أولاً.</p>`;
+                return;
+            }
+
+            container.innerHTML = `
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 2px solid var(--orange-bright);">
+                    <h3>رقم الطلب: #${latestOrder.id}</h3>
+                    <p style="margin: 0.5rem 0;"><b>العميل:</b> ${latestOrder.customer}</p>
+                    <p style="margin: 0.5rem 0;"><b>الطلبات:</b> ${latestOrder.items}</p>
+                    <p style="margin: 0.8rem 0; font-size: 1.3rem;"><b>الحالة الحالية:</b> <span style="color: var(--orange-deep);">${latestOrder.status}</span></p>
+                </div>
+            `;
+        }
+
+        // إضافة رأي وتطوير قسم آراء الزباين
+        function addCustomerComment() {
+            let nameInput = document.getElementById('new-comment-name').value.trim();
+            let commentInput = document.getElementById('new-comment-text').value.trim();
+
+            if(!nameInput || !commentInput) {
+                alert('يرجى كابة الاسم وتفاصيل التعليق!');
+                return;
+            }
+
+            let commentsContainer = document.getElementById('comments-container');
+            let newDiv = document.createElement('div');
+            newDiv.style.cssText = "text-align: right; background: white; padding: 10px; border-radius: 10px; margin-bottom: 10px;";
+            newDiv.innerHTML = `<b>⭐ ${nameInput}:</b> ${commentInput}`;
+
+            commentsContainer.appendChild(newDiv);
+
+            document.getElementById('new-comment-name').value = '';
+            document.getElementById('new-comment-text').value = '';
+            
+            alert('شكراً لك! تم إضافة تعليقك بنجاح.');
+        }
+
+        function spinWheel() {
+            if(!currentCustomer) { alert('سجل دخولك كزبون أولاً للعب بعجلة الحظ!'); return; }
+            
+            let wheel = document.getElementById('wheel-box');
+            let randomValue = Math.random() * 2000;
+            let deg = Math.floor(2000 + randomValue);
+            
+            wheel.style.transform = `rotate(${deg}deg)`;
+            
+            setTimeout(() => {
+                customersData[currentCustomer].points += 1;
+                document.getElementById('user-points').innerText = String(customersData[currentCustomer].points);
+                document.getElementById('wheel-result').innerText = `🎉 مبروك يا ${currentCustomer}! كسبت نقطة مجانية أضيفت لرصيدك!`;
+            }, 3000);
+        }
+
+        function loginAdmin() {
+            let passInput = document.getElementById('admin-password').value;
+            if(passInput === "1234") {
+                isAdminLoggedIn = true;
+                document.getElementById('admin-login-container').style.display = 'none';
+                document.getElementById('admin-orders-container').style.display = 'block';
+                renderAdminOrders();
+            } else {
+                alert('الرمز غير صحيح!');
+            }
+        }
+
+        function changeOrderStatus(orderId, newStatus) {
+            let o = orders.find(x => x.id === orderId);
+            if(o) {
+                o.status = newStatus;
+                if(latestOrder && latestOrder.id === orderId) {
+                    latestOrder.status = newStatus;
+                    updateOrderTrackUI();
+                }
+                renderAdminOrders();
+            }
+        }
+
+        function renderAdminOrders() {
+            if(!isAdminLoggedIn) return;
+            let tbody = document.getElementById('orders-list');
+            tbody.innerHTML = '';
+            orders.forEach(o => {
+                tbody.innerHTML += `<tr>
+                    <td style="padding:6px; border:1px solid #ddd;">${o.id}</td>
+                    <td style="padding:6px; border:1px solid #ddd;"><b>${o.customer}</b></td>
+                    <td style="padding:6px; border:1px solid #ddd;">${o.items}</td>
+                    <td style="padding:6px; border:1px solid #ddd;">${o.total.toFixed(2)} ريال</td>
+                    <td style="padding:6px; border:1px solid #ddd;">
+                        <select onchange="changeOrderStatus(${o.id}, this.value)">
+                            <option value="قيد التجهيز ⏳" ${o.status === 'قيد التجهيز ⏳' ? 'selected' : ''}>قيد التجهيز ⏳</option>
+                            <option value="تم التجهيز ☕" ${o.status === 'تم التجهيز ☕' ? 'selected' : ''}>تم التجهيز ☕</option>
+                            <option value="جاري التوصيل 🛵" ${o.status === 'جاري التوصيل 🛵' ? 'selected' : ''}>جاري التوصيل 🛵</option>
+                            <option value="تم التسليم ✅" ${o.status === 'تم التسليم ✅' ? 'selected' : ''}>تم التسليم ✅</option>
+                        </select>
+                    </td>
+                </tr>`;
+            });
+        }
+    </script>
+</body>
+</html>
